@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 const routes = Router();
 
-routes.get('/', (req, res) => res.send({ ok: true }));
+routes.get('/', (request, response) =>
+  response.send({ message: 'Hello GoStack' }),
+);
 
 export default routes;
