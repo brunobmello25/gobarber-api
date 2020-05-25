@@ -13,7 +13,7 @@ class AppointmentsRepository {
     this.appointments = [];
   }
 
-  public all() {
+  public all(): Appointment[] {
     return this.appointments;
   }
 
@@ -23,7 +23,7 @@ class AppointmentsRepository {
     return found || null;
   }
 
-  public create({ provider, date }: CreateAppointmentDTO) {
+  public create({ provider, date }: CreateAppointmentDTO): Appointment {
     const appointment = new Appointment({ provider, date });
 
     this.appointments.push(appointment);
