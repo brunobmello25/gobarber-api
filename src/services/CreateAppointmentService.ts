@@ -14,10 +14,10 @@ class CreateAppointmentService {
     this.appointmentsRepository = appointmentsRepository;
   }
 
-  public execute({ date, provider }: Request): Appointment {
+  public async execute({ date, provider }: Request): Promise<Appointment> {
     const appointmentDate = startOfHour(date);
 
-    const hasAppointmentInSameDate = this.appointmentsRepository.findByDate(
+    const hasAppointmentInSameDate = await this.appointmentsRepository.findByDate(
       appointmentDate,
     );
 
@@ -29,6 +29,8 @@ class CreateAppointmentService {
       provider,
       date: appointmentDate,
     });
+
+    await this.appointmentsRepository.save(appointment);
 
     return appointment;
   }
