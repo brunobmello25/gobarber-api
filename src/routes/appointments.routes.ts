@@ -14,11 +14,11 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { provider, date } = req.body;
-
-  const parsedDate = parseISO(date);
-
   try {
+    const { provider, date } = req.body;
+
+    const parsedDate = parseISO(date);
+
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
     const createAppointment = new CreateAppointmentService(
