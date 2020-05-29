@@ -1,4 +1,4 @@
-import { startOfHour } from 'date-fns';
+import { hash } from 'bcryptjs';
 import User from '../models/User';
 import UsersRepository from '../repositories/UsersRepository';
 
@@ -22,7 +22,13 @@ class CreateUserService {
 
     if (isEmailUsed) throw new Error('Email address already in use');
 
-    const user = this.usersRepository.create({ name, email, password });
+    const hashedPassword = await hash(password, 8);
+
+    const user = this.usersRepository.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
 
     await this.usersRepository.save(user);
 
