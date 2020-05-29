@@ -4,7 +4,7 @@ import Appointment from '../models/Appointment';
 
 interface Request {
   date: Date;
-  provider: string;
+  providerId: string;
 }
 
 class CreateAppointmentService {
@@ -14,7 +14,7 @@ class CreateAppointmentService {
     this.appointmentsRepository = appointmentsRepository;
   }
 
-  public async execute({ date, provider }: Request): Promise<Appointment> {
+  public async execute({ date, providerId }: Request): Promise<Appointment> {
     const appointmentDate = startOfHour(date);
 
     const hasAppointmentInSameDate = await this.appointmentsRepository.findByDate(
@@ -26,7 +26,7 @@ class CreateAppointmentService {
     }
 
     const appointment = this.appointmentsRepository.create({
-      provider,
+      providerId,
       date: appointmentDate,
     });
 
