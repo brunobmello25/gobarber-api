@@ -7,6 +7,10 @@ interface Request {
   providerId: string;
 }
 
+interface Response {
+  appointment: Appointment;
+}
+
 class CreateAppointmentService {
   private appointmentsRepository: AppointmentsRepository;
 
@@ -14,7 +18,7 @@ class CreateAppointmentService {
     this.appointmentsRepository = appointmentsRepository;
   }
 
-  public async execute({ date, providerId }: Request): Promise<Appointment> {
+  public async execute({ date, providerId }: Request): Promise<Response> {
     const appointmentDate = startOfHour(date);
 
     const hasAppointmentInSameDate = await this.appointmentsRepository.findByDate(
@@ -32,7 +36,7 @@ class CreateAppointmentService {
 
     await this.appointmentsRepository.save(appointment);
 
-    return appointment;
+    return { appointment };
   }
 }
 

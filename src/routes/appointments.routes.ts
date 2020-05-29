@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
       appointmentsRepository,
     );
 
-    const appointment = await createAppointment.execute({
+    const { appointment } = await createAppointment.execute({
       date: parsedDate,
       providerId,
     });

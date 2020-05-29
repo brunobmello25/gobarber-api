@@ -8,6 +8,10 @@ interface Request {
   password: string;
 }
 
+interface Response {
+  user: User;
+}
+
 class CreateUserService {
   usersRepository: UsersRepository;
 
@@ -15,7 +19,7 @@ class CreateUserService {
     this.usersRepository = usersRepository;
   }
 
-  public async execute({ name, email, password }: Request): Promise<User> {
+  public async execute({ name, email, password }: Request): Promise<Response> {
     const isEmailUsed = await this.usersRepository.findOne({
       where: { email },
     });
@@ -32,7 +36,7 @@ class CreateUserService {
 
     await this.usersRepository.save(user);
 
-    return user;
+    return { user };
   }
 }
 

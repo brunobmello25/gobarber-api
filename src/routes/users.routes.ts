@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
 
     const usersRepository = getCustomRepository(UsersRepository);
 
-    const user = await new CreateUserService(usersRepository).execute({
+    const { user } = await new CreateUserService(usersRepository).execute({
       name,
       email,
       password,
