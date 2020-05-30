@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import UsersRepository from '../repositories/UsersRepository';
 import User from '../models/User';
+import authConfig from '../config/auth';
 
 interface Request {
   email: string;
@@ -30,10 +31,9 @@ class AuthenticateUserService {
     if (!isPasswordValid)
       throw new Error('Incorrect email/password combination');
 
-    // TODO: change jwt sign private key and move it to a secret config file
-    const token = jwt.sign({}, 'e0ab2eeba535bc7aede62c46ee19ae33', {
+    const token = jwt.sign({}, authConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: authConfig.jwt.expiresIn,
     });
 
     return {
