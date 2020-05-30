@@ -17,26 +17,22 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  try {
-    const { providerId, date } = req.body;
+  const { providerId, date } = req.body;
 
-    const parsedDate = parseISO(date);
+  const parsedDate = parseISO(date);
 
-    const appointmentsRepository = getCustomRepository(AppointmentsRepository);
+  const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-    const createAppointment = new CreateAppointmentService(
-      appointmentsRepository,
-    );
+  const createAppointment = new CreateAppointmentService(
+    appointmentsRepository,
+  );
 
-    const { appointment } = await createAppointment.execute({
-      date: parsedDate,
-      providerId,
-    });
+  const { appointment } = await createAppointment.execute({
+    date: parsedDate,
+    providerId,
+  });
 
-    return res.json({ appointment });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
+  return res.json({ appointment });
 });
 
 export default router;

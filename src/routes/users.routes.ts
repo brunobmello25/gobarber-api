@@ -11,23 +11,19 @@ const router = Router();
 const upload = multer(uploadConfig);
 
 router.post('/', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-    const usersRepository = getCustomRepository(UsersRepository);
+  const usersRepository = getCustomRepository(UsersRepository);
 
-    const { user } = await new CreateUserService(usersRepository).execute({
-      name,
-      email,
-      password,
-    });
+  const { user } = await new CreateUserService(usersRepository).execute({
+    name,
+    email,
+    password,
+  });
 
-    delete user.password;
+  delete user.password;
 
-    return res.status(201).json({ user });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
+  return res.status(201).json({ user });
 });
 
 router.patch(
@@ -35,20 +31,16 @@ router.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (req, res) => {
-    try {
-      const usersRepository = getCustomRepository(UsersRepository);
+    const usersRepository = getCustomRepository(UsersRepository);
 
-      const user = await new UpdateUserAvatarService(usersRepository).execute({
-        userId: req.user.id,
-        avatarFilename: req.file.filename,
-      });
+    const user = await new UpdateUserAvatarService(usersRepository).execute({
+      userId: req.user.id,
+      avatarFilename: req.file.filename,
+    });
 
-      delete user.password;
+    delete user.password;
 
-      return res.json({ ok: true });
-    } catch (error) {
-      return res.status(400).json({ error: error.message });
-    }
+    return res.json({ ok: true });
   },
 );
 
