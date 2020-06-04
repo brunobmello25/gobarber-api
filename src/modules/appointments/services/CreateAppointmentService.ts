@@ -4,12 +4,12 @@ import { AppointmentsRepository } from '@modules/appointments/repositories';
 import { Appointment } from '@modules/appointments/infra/typeorm/entities';
 import { ApplicationError } from '@shared/errors';
 
-interface Request {
+interface IRequest {
   date: Date;
   providerId: string;
 }
 
-interface Response {
+interface IResponse {
   appointment: Appointment;
 }
 
@@ -20,7 +20,7 @@ class CreateAppointmentService {
     this.appointmentsRepository = appointmentsRepository;
   }
 
-  public async execute({ date, providerId }: Request): Promise<Response> {
+  public async execute({ date, providerId }: IRequest): Promise<IResponse> {
     const appointmentDate = startOfHour(date);
 
     const hasAppointmentInSameDate = await this.appointmentsRepository.findByDate(

@@ -6,7 +6,7 @@ import { UsersRepository } from '@modules/users/repositories';
 import { upload as uploadConfig } from '@config/index';
 import { ApplicationError } from '@shared/errors';
 
-interface Request {
+interface IRequest {
   userId: string;
   avatarFilename: string;
 }
@@ -18,7 +18,7 @@ class UpdateUserAvatarService {
     this.usersRepository = usersRepository;
   }
 
-  public async execute({ userId, avatarFilename }: Request): Promise<User> {
+  public async execute({ userId, avatarFilename }: IRequest): Promise<User> {
     const user = await this.usersRepository.findOne(userId);
 
     if (!user)

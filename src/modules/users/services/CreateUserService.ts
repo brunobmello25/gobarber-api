@@ -4,13 +4,13 @@ import { User } from '@modules/users/infra/typeorm/entities';
 import { UsersRepository } from '@modules/users/repositories';
 import { ApplicationError } from '@shared/errors';
 
-interface Request {
+interface IRequest {
   name: string;
   email: string;
   password: string;
 }
 
-interface Response {
+interface IResponse {
   user: User;
 }
 
@@ -21,7 +21,11 @@ class CreateUserService {
     this.usersRepository = usersRepository;
   }
 
-  public async execute({ name, email, password }: Request): Promise<Response> {
+  public async execute({
+    name,
+    email,
+    password,
+  }: IRequest): Promise<IResponse> {
     const isEmailUsed = await this.usersRepository.findOne({
       where: { email },
     });

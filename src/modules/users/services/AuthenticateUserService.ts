@@ -6,12 +6,12 @@ import { User } from '@modules/users/infra/typeorm/entities';
 import { auth as authConfig } from '@config/index';
 import { ApplicationError } from '@shared/errors';
 
-interface Request {
+interface IRequest {
   email: string;
   password: string;
 }
 
-interface Response {
+interface IResponse {
   user: User;
   token: string;
 }
@@ -23,7 +23,7 @@ class AuthenticateUserService {
     this.usersRepository = usersRepository;
   }
 
-  public async execute({ email, password }: Request): Promise<Response> {
+  public async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findOne({ where: { email } });
 
     if (!user)
