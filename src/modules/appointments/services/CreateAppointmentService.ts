@@ -1,6 +1,6 @@
 import { startOfHour } from 'date-fns';
 
-import { AppointmentsRepository } from 'repositories';
+import { AppointmentsRepository } from 'modules/appointments/repositories';
 import { Appointment } from 'models';
 import { ApplicationError } from 'errors';
 

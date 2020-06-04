@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import { UsersRepository } from 'repositories';
+import { UsersRepository } from 'modules/users/repositories';
 import { User } from 'models';
 import { auth as authConfig } from 'config';
 import { ApplicationError } from 'errors';

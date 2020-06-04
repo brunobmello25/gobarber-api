@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 
-import { UsersRepository } from 'repositories';
-import { AuthenticateUserService } from 'services';
+import { UsersRepository } from 'modules/users/repositories';
+import { AuthenticateUserService } from 'modules/users/services';
 
 const router = Router();
 

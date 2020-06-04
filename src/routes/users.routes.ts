@@ -3,7 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import multer from 'multer';
 
 import { CreateUserService, UpdateUserAvatarService } from 'services';
-import { UsersRepository } from 'repositories';
+import { UsersRepository } from 'modules/users/repositories';
 import { ensureAuthenticated } from 'middlewares';
 import { upload as uploadConfig } from 'config';
 

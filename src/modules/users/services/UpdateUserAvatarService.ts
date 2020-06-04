@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 import { User } from 'models';
-import { UsersRepository } from 'repositories';
+import { UsersRepository } from 'modules/users/repositories';
 import { upload as uploadConfig } from 'config';
 import { ApplicationError } from 'errors';
 
