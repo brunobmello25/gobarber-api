@@ -7,7 +7,7 @@ import {
   UpdateUserAvatarService,
 } from 'modules/users/services';
 import { UsersRepository } from '@modules/users/repositories';
-import { ensureAuthenticated } from '@shared/infra/http/middlewares';
+import { ensureAuthenticated } from '@modules/users/infra/middlewares';
 import { upload as uploadConfig } from '@config/index';
 
 const router = Router();
