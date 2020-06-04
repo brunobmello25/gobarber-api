@@ -1,8 +1,8 @@
 import { startOfHour } from 'date-fns';
 
 import { AppointmentsRepository } from 'modules/appointments/repositories';
-import { Appointment } from 'models';
-import { ApplicationError } from 'errors';
+import { Appointment } from 'modules/appointments/entities';
+import { ApplicationError } from 'shared/errors';
 
 interface Request {
   date: Date;

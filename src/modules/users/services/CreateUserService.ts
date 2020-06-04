@@ -1,8 +1,8 @@
 import { hash } from 'bcryptjs';
 
-import { User } from 'models';
+import { User } from 'modules/users/entities';
 import { UsersRepository } from 'modules/users/repositories';
-import { ApplicationError } from 'errors';
+import { ApplicationError } from 'shared/errors';
 
 interface Request {
   name: string;

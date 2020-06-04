@@ -2,9 +2,12 @@ import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import multer from 'multer';
 
-import { CreateUserService, UpdateUserAvatarService } from 'services';
+import {
+  CreateUserService,
+  UpdateUserAvatarService,
+} from 'modules/users/services';
 import { UsersRepository } from 'modules/users/repositories';
-import { ensureAuthenticated } from 'middlewares';
+import { ensureAuthenticated } from 'shared/middlewares';
 import { upload as uploadConfig } from 'config';
 
 const router = Router();
