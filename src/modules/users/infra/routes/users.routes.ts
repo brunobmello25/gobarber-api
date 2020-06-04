@@ -6,9 +6,9 @@ import {
   CreateUserService,
   UpdateUserAvatarService,
 } from 'modules/users/services';
-import { UsersRepository } from 'modules/users/repositories';
-import { ensureAuthenticated } from 'shared/infra/http/middlewares';
-import { upload as uploadConfig } from 'config';
+import { UsersRepository } from '@modules/users/repositories';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares';
+import { upload as uploadConfig } from '@config/index';
 
 const router = Router();
 const upload = multer(uploadConfig);
