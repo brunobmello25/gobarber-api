@@ -1,9 +1,10 @@
 import { compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import UsersRepository from '../repositories/UsersRepository';
-import User from '../models/User';
-import authConfig from '../config/auth';
-import { ApplicationError } from '../errors/index';
+
+import { UsersRepository } from 'repositories';
+import { User } from 'models';
+import { auth as authConfig } from 'config';
+import { ApplicationError } from 'errors';
 
 interface Request {
   email: string;
