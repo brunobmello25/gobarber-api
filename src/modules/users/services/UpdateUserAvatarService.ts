@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 
-import { User } from 'modules/users/entities';
+import { User } from 'modules/users/infra/typeorm/entities';
 import { UsersRepository } from 'modules/users/repositories';
 import { upload as uploadConfig } from 'config';
 import { ApplicationError } from 'shared/errors';

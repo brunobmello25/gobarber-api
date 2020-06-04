@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs';
 
-import { User } from 'modules/users/entities';
+import { User } from 'modules/users/infra/typeorm/entities';
 import { UsersRepository } from 'modules/users/repositories';
 import { ApplicationError } from 'shared/errors';
 

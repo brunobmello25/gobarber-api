@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev:server": "ts-node-dev --inspect --transpileOnly --ignore node_modules -r tsconfig-paths/register src/server.ts",
+    "dev:server": "ts-node-dev --inspect --transpileOnly --ignore node_modules -r tsconfig-paths/register src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import { startOfHour } from 'date-fns';
 
 import { AppointmentsRepository } from 'modules/appointments/repositories';
-import { Appointment } from 'modules/appointments/entities';
+import { Appointment } from 'modules/appointments/infra/typeorm/entities';
 import { ApplicationError } from 'shared/errors';
 
 interface Request {

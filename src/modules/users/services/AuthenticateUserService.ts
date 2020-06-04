@@ -2,7 +2,7 @@ import { compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { UsersRepository } from 'modules/users/repositories';
-import { User } from 'modules/users/entities';
+import { User } from 'modules/users/infra/typeorm/entities';
 import { auth as authConfig } from 'config';
 import { ApplicationError } from 'shared/errors';
 
