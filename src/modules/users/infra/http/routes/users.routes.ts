@@ -6,7 +6,7 @@ import {
   CreateUserService,
   UpdateUserAvatarService,
 } from 'modules/users/services';
-import { ensureAuthenticated } from '@modules/users/infra/middlewares';
+import { ensureAuthenticated } from '@modules/users/infra/http/middlewares';
 import { upload as uploadConfig } from '@config/index';
 
 const router = Router();
