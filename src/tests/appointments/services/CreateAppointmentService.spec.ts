@@ -1,5 +1,6 @@
 import { MockAppointmentsRepository } from '@tests/appointments/mocks';
 import { CreateAppointmentService } from '@modules/appointments/services';
+import { ApplicationError } from '@shared/errors';
 
 describe('CreateAppointment', () => {
   it('should be able to create a new appointment', async () => {
@@ -13,5 +14,20 @@ describe('CreateAppointment', () => {
     expect(appointment.providerId).toBe('123123');
   });
 
-  // it('should not be able to create two appointments on the same time', () => {});
+  it('should not be able to create two appointments on the same time', async () => {
+    const mockAppointmentsRepository = new MockAppointmentsRepository();
+    const createAppointmentService = new CreateAppointmentService(
+      mockAppointmentsRepository,
+    );
+    const date = new Date(2020, 4, 10, 11);
+
+    await createAppointmentService.execute({ date, providerId: '123123' });
+
+    expect(
+      createAppointmentService.execute({
+        date,
+        providerId: '123123',
+      }),
+    ).rejects.toBeInstanceOf(ApplicationError);
+  });
 });
