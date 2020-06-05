@@ -10,7 +10,7 @@ class AppointmentsController {
 
     const parsedDate = parseISO(date);
 
-    const { appointment } = await container
+    const appointment = await container
       .resolve(CreateAppointmentService)
       .execute({
         date: parsedDate,
