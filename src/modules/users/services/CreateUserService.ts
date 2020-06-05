@@ -1,4 +1,5 @@
 import { hash } from 'bcryptjs';
+import { inject, injectable } from 'tsyringe';
 
 import { User } from '@modules/users/infra/typeorm/entities';
 import { IUsersRepository } from '@modules/users/repositories';
@@ -14,8 +15,11 @@ interface IResponse {
   user: User;
 }
 
+@injectable()
 class CreateUserService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    @inject('UsersRepository') private usersRepository: IUsersRepository,
+  ) {}
 
   public async execute({
     name,
