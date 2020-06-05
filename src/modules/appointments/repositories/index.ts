@@ -1,3 +1,3 @@
-import AppointmentsRepository from './AppointmentsRepository';
+import IAppointmentsRepository from './IAppointmentsRepository';
 
-export { AppointmentsRepository };
+export { IAppointmentsRepository };
