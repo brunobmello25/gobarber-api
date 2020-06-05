@@ -1,15 +1,14 @@
 import { Router } from 'express';
-import { getCustomRepository } from 'typeorm';
 
-import { UsersRepository } from '@modules/users/repositories';
+import { UsersRepository } from '@modules/users/infra/typeorm/repositories';
 import { AuthenticateUserService } from '@modules/users/services';
 
 const router = Router();
 
+const usersRepository = new UsersRepository();
+
 router.post('/', async (req, res) => {
   const { email, password } = req.body;
-
-  const usersRepository = getCustomRepository(UsersRepository);
 
   const { user, token } = await new AuthenticateUserService(
     usersRepository,

@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import { UsersRepository } from '@modules/users/repositories';
+import { IUsersRepository } from '@modules/users/repositories';
 import { User } from '@modules/users/infra/typeorm/entities';
 import { auth as authConfig } from '@config/index';
 import { ApplicationError } from '@shared/errors';
@@ -17,14 +17,10 @@ interface IResponse {
 }
 
 class AuthenticateUserService {
-  usersRepository: UsersRepository;
-
-  constructor(usersRepository: UsersRepository) {
-    this.usersRepository = usersRepository;
-  }
+  constructor(private usersRepository: IUsersRepository) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
-    const user = await this.usersRepository.findOne({ where: { email } });
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user)
       throw new ApplicationError('Incorrect email/password combination', 401);

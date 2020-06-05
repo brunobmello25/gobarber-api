@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 import { User } from '@modules/users/infra/typeorm/entities';
-import { UsersRepository } from '@modules/users/repositories';
+import { IUsersRepository } from '@modules/users/repositories';
 import { upload as uploadConfig } from '@config/index';
 import { ApplicationError } from '@shared/errors';
 
@@ -12,14 +12,10 @@ interface IRequest {
 }
 
 class UpdateUserAvatarService {
-  usersRepository: UsersRepository;
-
-  constructor(usersRepository: UsersRepository) {
-    this.usersRepository = usersRepository;
-  }
+  constructor(private usersRepository: IUsersRepository) {}
 
   public async execute({ userId, avatarFilename }: IRequest): Promise<User> {
-    const user = await this.usersRepository.findOne(userId);
+    const user = await this.usersRepository.findById(userId);
 
     if (!user)
       throw new ApplicationError(
