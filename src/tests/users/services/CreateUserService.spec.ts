@@ -3,7 +3,7 @@ import { CreateUserService } from '@modules/users/services';
 import { ApplicationError } from '@shared/errors';
 import MockHashProvider from '@modules/users/providers/HashProvider/mocks/MockHashProvider';
 
-describe('CreateAppointment', () => {
+describe('CreateUser', () => {
   it('should be able to create a new user', async () => {
     const mockUsersRepository = new MockUsersRepository();
     const mockHashProvider = new MockHashProvider();
