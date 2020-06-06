@@ -11,21 +11,13 @@ interface IRequest {
   password: string;
 }
 
-interface IResponse {
-  user: User;
-}
-
 @injectable()
 class CreateUserService {
   constructor(
     @inject('UsersRepository') private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({
-    name,
-    email,
-    password,
-  }: IRequest): Promise<IResponse> {
+  public async execute({ name, email, password }: IRequest): Promise<User> {
     const isEmailUsed = await this.usersRepository.findByEmail(email);
 
     if (isEmailUsed) throw new ApplicationError('Email address already in use');
@@ -38,7 +30,7 @@ class CreateUserService {
       password: hashedPassword,
     });
 
-    return { user };
+    return user;
   }
 }
 

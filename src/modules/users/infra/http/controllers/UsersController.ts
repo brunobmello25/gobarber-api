@@ -7,7 +7,7 @@ class UsersController {
   public async create(request: Request, response: Response) {
     const { name, email, password } = request.body;
 
-    const { user } = await container.resolve(CreateUserService).execute({
+    const user = await container.resolve(CreateUserService).execute({
       name,
       email,
       password,
