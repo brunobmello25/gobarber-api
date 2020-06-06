@@ -33,4 +33,35 @@ describe('UpdateUserAvatar', () => {
       ).execute({ userId: 'non-existing-user', avatarFilename: 'avatar.jpg' }),
     ).rejects.toBeInstanceOf(ApplicationError);
   });
+
+  it('should delete old avatar when uploading a new one', async () => {
+    const mockUsersRepository = new MockUsersRepository();
+    const mockStorageProvider = new MockStorageProvider();
+
+    const deleteFile = jest.spyOn(mockStorageProvider, 'deleteFile');
+
+    const user = await mockUsersRepository.create({
+      name: 'User',
+      email: 'user@email.com',
+      password: '123123',
+    });
+
+    const updateAvatar = new UpdateUserAvatarService(
+      mockUsersRepository,
+      mockStorageProvider,
+    );
+
+    await updateAvatar.execute({
+      userId: user.id,
+      avatarFilename: 'avatar.jpg',
+    });
+
+    await updateAvatar.execute({
+      userId: user.id,
+      avatarFilename: 'avatar2.jpg',
+    });
+
+    expect(deleteFile).toHaveBeenCalledWith('avatar.jpg');
+    expect(user.avatar).toBe('avatar2.jpg');
+  });
 });
