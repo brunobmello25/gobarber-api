@@ -3,7 +3,7 @@ import {
   CreateUserService,
   AuthenticateUserService,
 } from '@modules/users/services';
-import MockHashProvider from '@modules/users/providers/HashProvider/mocks/MockHashProvider';
+import { MockHashProvider } from '@modules/users/providers/HashProvider/mocks';
 import { ApplicationError } from '@shared/errors';
 
 describe('AuthenticateUser', () => {

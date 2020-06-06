@@ -1,7 +1,7 @@
 import { MockUsersRepository } from '@tests/users/mocks';
 import { CreateUserService } from '@modules/users/services';
 import { ApplicationError } from '@shared/errors';
-import MockHashProvider from '@modules/users/providers/HashProvider/mocks/MockHashProvider';
+import { MockHashProvider } from '@modules/users/providers/HashProvider/mocks';
 
 describe('CreateUser', () => {
   it('should be able to create a new user', async () => {
