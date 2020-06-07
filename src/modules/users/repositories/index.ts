@@ -1,3 +1,4 @@
 import IUsersRepository from './IUsersRepository';
+import IUserTokensRepository from './IUserTokensRepository';
 
-export { IUsersRepository };
+export { IUsersRepository, IUserTokensRepository };

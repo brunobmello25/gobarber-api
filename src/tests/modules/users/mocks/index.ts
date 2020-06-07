@@ -1,3 +1,4 @@
 import MockUsersRepository from './MockUsersRepository';
+import MockUserTokensRepository from './MockUserTokensRepository';
 
-export { MockUsersRepository };
+export { MockUsersRepository, MockUserTokensRepository };
