@@ -6,24 +6,32 @@ import {
 import { MockHashProvider } from '@modules/users/providers/HashProvider/mocks';
 import { ApplicationError } from '@shared/errors';
 
-describe('AuthenticateUser', () => {
-  it('should be able to authenticate', async () => {
-    const mockUsersRepository = new MockUsersRepository();
-    const mockHashProvider = new MockHashProvider();
+let mockUsersRepository: MockUsersRepository;
+let mockHashProvider: MockHashProvider;
 
-    const user = await new CreateUserService(
+let createUser: CreateUserService;
+let authenticateUser: AuthenticateUserService;
+
+describe('AuthenticateUser', () => {
+  beforeEach(() => {
+    mockUsersRepository = new MockUsersRepository();
+    mockHashProvider = new MockHashProvider();
+
+    createUser = new CreateUserService(mockUsersRepository, mockHashProvider);
+    authenticateUser = new AuthenticateUserService(
       mockUsersRepository,
       mockHashProvider,
-    ).execute({
+    );
+  });
+
+  it('should be able to authenticate', async () => {
+    const user = await createUser.execute({
       name: 'User',
       email: 'user@email.com',
       password: '123123',
     });
 
-    const response = await new AuthenticateUserService(
-      mockUsersRepository,
-      mockHashProvider,
-    ).execute({
+    const response = await authenticateUser.execute({
       email: 'user@email.com',
       password: '123123',
     });
@@ -33,20 +41,14 @@ describe('AuthenticateUser', () => {
   });
 
   it('should not be able to authenticate with wrong password', async () => {
-    const mockUsersRepository = new MockUsersRepository();
-    const mockHashProvider = new MockHashProvider();
-
-    await new CreateUserService(mockUsersRepository, mockHashProvider).execute({
+    await createUser.execute({
       name: 'User',
       email: 'user@email.com',
       password: '123123',
     });
 
     expect(
-      new AuthenticateUserService(
-        mockUsersRepository,
-        mockHashProvider,
-      ).execute({
+      authenticateUser.execute({
         email: 'user@email.com',
         password: 'wrong',
       }),
@@ -54,14 +56,8 @@ describe('AuthenticateUser', () => {
   });
 
   it('should not be able to authenticate with non existing user', async () => {
-    const mockUsersRepository = new MockUsersRepository();
-    const mockHashProvider = new MockHashProvider();
-
     await expect(
-      new AuthenticateUserService(
-        mockUsersRepository,
-        mockHashProvider,
-      ).execute({
+      authenticateUser.execute({
         email: 'user@email.com',
         password: '123123',
       }),
