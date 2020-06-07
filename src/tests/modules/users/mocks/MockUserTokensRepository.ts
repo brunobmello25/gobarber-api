@@ -7,7 +7,13 @@ class MockUserTokensRepository implements IUserTokensRepository {
 
   async generate(userId: string): Promise<UserToken> {
     const userToken = new UserToken();
-    Object.assign(userToken, { id: uuid(), token: uuid(), userId });
+    Object.assign(userToken, {
+      id: uuid(),
+      token: uuid(),
+      userId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
 
     this.userTokens.push(userToken);
 
