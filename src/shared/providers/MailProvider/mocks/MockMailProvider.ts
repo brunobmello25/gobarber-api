@@ -1,15 +1,11 @@
 import { IMailProvider } from '@shared/providers/MailProvider/models';
-
-interface IMessage {
-  to: string;
-  body: string;
-}
+import { ISendMailDTO } from '@shared/providers/MailProvider/dtos';
 
 class MockMailProvider implements IMailProvider {
-  private messages: IMessage[] = [];
+  private messages: ISendMailDTO[] = [];
 
-  async sendEmail(to: string, body: string): Promise<void> {
-    this.messages.push({ to, body });
+  async sendEmail(message: ISendMailDTO): Promise<void> {
+    this.messages.push(message);
   }
 }
 
