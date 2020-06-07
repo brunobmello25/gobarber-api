@@ -4,6 +4,7 @@ import {
 } from '@tests/modules/users/mocks';
 import { ResetPasswordService } from '@modules/users/services';
 import { MockHashProvider } from '@modules/users/providers/HashProvider/mocks';
+import { ApplicationError } from '@shared/errors';
 
 let mockUsersRepository: MockUsersRepository;
 let mockUserTokensRepository: MockUserTokensRepository;
@@ -37,5 +38,27 @@ describe('ResetPassword', () => {
 
     expect(hashFunction).toHaveBeenCalledWith('new-password');
     expect(user.password).toBe('new-password');
+  });
+
+  it('should not be able to reset password with non existing token', async () => {
+    await expect(
+      resetPassword.execute({
+        token: 'non-existing-token',
+        password: '123123',
+      }),
+    ).rejects.toBeInstanceOf(ApplicationError);
+  });
+
+  it('should not be able to reset password with non existing user', async () => {
+    const { token } = await mockUserTokensRepository.generate(
+      'non-existing-user',
+    );
+
+    await expect(
+      resetPassword.execute({
+        token,
+        password: '123123',
+      }),
+    ).rejects.toBeInstanceOf(ApplicationError);
   });
 });
