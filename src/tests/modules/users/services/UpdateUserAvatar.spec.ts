@@ -26,7 +26,7 @@ describe('UpdateUserAvatar', () => {
     const mockUsersRepository = new MockUsersRepository();
     const mockStorageProvider = new MockStorageProvider();
 
-    expect(
+    await expect(
       new UpdateUserAvatarService(
         mockUsersRepository,
         mockStorageProvider,

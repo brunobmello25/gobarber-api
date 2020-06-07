@@ -57,7 +57,7 @@ describe('AuthenticateUser', () => {
     const mockUsersRepository = new MockUsersRepository();
     const mockHashProvider = new MockHashProvider();
 
-    expect(
+    await expect(
       new AuthenticateUserService(
         mockUsersRepository,
         mockHashProvider,
