@@ -15,7 +15,10 @@ describe('SendForgotPasswordEmail', () => {
 
     const sendEmailFunction = jest.spyOn(mockMailProvider, 'sendEmail');
 
-    await new SendForgotPasswordEmailService(mockUsersRepository).execute({
+    await new SendForgotPasswordEmailService(
+      mockUsersRepository,
+      mockMailProvider,
+    ).execute({
       email: 'user@email.com',
     });
 
