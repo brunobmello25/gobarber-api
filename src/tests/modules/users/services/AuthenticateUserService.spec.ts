@@ -1,4 +1,4 @@
-import { MockUsersRepository } from '@tests/users/mocks';
+import { MockUsersRepository } from '@tests/modules/users/mocks';
 import {
   CreateUserService,
   AuthenticateUserService,

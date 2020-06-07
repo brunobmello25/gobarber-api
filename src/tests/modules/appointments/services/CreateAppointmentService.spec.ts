@@ -1,4 +1,4 @@
-import { MockAppointmentsRepository } from '@tests/appointments/mocks';
+import { MockAppointmentsRepository } from '@tests/modules/appointments/mocks';
 import { CreateAppointmentService } from '@modules/appointments/services';
 import { ApplicationError } from '@shared/errors';
 

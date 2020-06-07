@@ -1,4 +1,4 @@
-import { MockUsersRepository } from '@tests/users/mocks';
+import { MockUsersRepository } from '@tests/modules/users/mocks';
 import { UpdateUserAvatarService } from '@modules/users/services';
 import MockStorageProvider from '@shared/providers/StorageProvider/mocks/MockStorageProvider';
 import { ApplicationError } from '@shared/errors';

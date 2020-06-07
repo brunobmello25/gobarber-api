@@ -1,4 +1,4 @@
-import { MockUsersRepository } from '@tests/users/mocks';
+import { MockUsersRepository } from '@tests/modules/users/mocks';
 import { CreateUserService } from '@modules/users/services';
 import { ApplicationError } from '@shared/errors';
 import { MockHashProvider } from '@modules/users/providers/HashProvider/mocks';
