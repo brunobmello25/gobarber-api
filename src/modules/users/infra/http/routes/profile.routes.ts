@@ -7,6 +7,7 @@ const router = Router();
 
 router.use(ensureAuthenticated);
 
+router.get('/', profileController.show);
 router.put('/', profileController.update);
 
 export default router;
