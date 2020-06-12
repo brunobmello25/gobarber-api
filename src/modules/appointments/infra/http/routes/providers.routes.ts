@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
 import { ensureAuthenticated } from '@modules/users/infra/http/middlewares';
-import { appointmentsController } from '@modules/appointments/infra/http/controllers';
+import { providersController } from '@modules/appointments/infra/http/controllers';
 
 const router = Router();
 
 router.use(ensureAuthenticated);
 
-router.post('/', appointmentsController.create);
+router.get('/', providersController.index);
 
 export default router;

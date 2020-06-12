@@ -1,6 +1,9 @@
 import { Router } from 'express';
 
-import { appointments } from '@modules/appointments/infra/http/routes';
+import {
+  appointments,
+  providers,
+} from '@modules/appointments/infra/http/routes';
 import {
   sessions,
   users,
@@ -15,5 +18,6 @@ routes.use('/users', users);
 routes.use('/sessions', sessions);
 routes.use('/password', password);
 routes.use('/profile', profile);
+routes.use('/providers', providers);
 
 export default routes;
