@@ -16,18 +16,22 @@ describe('ListProviderDayAvailability', () => {
     await mockAppointmentsRepository.create({
       date: new Date(2020, 4, 20, 8, 0, 0),
       providerId: 'user',
+      userId: 'user',
     });
     await mockAppointmentsRepository.create({
       date: new Date(2020, 4, 20, 10, 0, 0),
       providerId: 'user',
+      userId: 'user',
     });
     await mockAppointmentsRepository.create({
       date: new Date(2020, 4, 20, 14, 0, 0),
       providerId: 'user',
+      userId: 'user',
     });
     await mockAppointmentsRepository.create({
       date: new Date(2020, 4, 20, 15, 0, 0),
       providerId: 'user',
+      userId: 'user',
     });
     jest
       .spyOn(Date, 'now')
