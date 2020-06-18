@@ -1,5 +1,5 @@
 import { MockUsersRepository } from '@tests/modules/users/mocks';
-import ListProvidersService from '@modules/appointments/services/ListProvidersService';
+import { ListProvidersService } from '@modules/appointments/services';
 
 let mockUsersRepository: MockUsersRepository;
 let listProviders: ListProvidersService;
