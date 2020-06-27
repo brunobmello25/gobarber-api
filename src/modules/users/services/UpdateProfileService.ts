@@ -17,7 +17,7 @@ interface IRequest {
 class UpdateProfileService {
   constructor(
     @inject('UsersRepository') private usersRepository: IUsersRepository,
-    @inject('StorageProvider') private hashProvider: IHashProvider,
+    @inject('HashProvider') private hashProvider: IHashProvider,
   ) {}
 
   public async execute({
