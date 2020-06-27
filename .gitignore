@@ -3,3 +3,4 @@
 !/tmp/.gitkeep
 /src/tests/coverage/**
 .env
+ormconfig.json
