@@ -2,18 +2,22 @@ import { MockAppointmentsRepository } from '@tests/modules/appointments/mocks';
 import { CreateAppointmentService } from '@modules/appointments/services';
 import { ApplicationError } from '@shared/errors';
 import { MockNotificationsRepository } from '@tests/modules/notifications';
+import { MockCacheProvider } from '@shared/providers/CacheProvider/mocks';
 
 let mockNotificationsRepository: MockNotificationsRepository;
 let mockAppointmentsRepository: MockAppointmentsRepository;
+let mockCacheProvider: MockCacheProvider;
 let createAppointment: CreateAppointmentService;
 
 describe('CreateAppointment', () => {
   beforeEach(() => {
     mockAppointmentsRepository = new MockAppointmentsRepository();
     mockNotificationsRepository = new MockNotificationsRepository();
+    mockCacheProvider = new MockCacheProvider();
     createAppointment = new CreateAppointmentService(
       mockAppointmentsRepository,
       mockNotificationsRepository,
+      mockCacheProvider,
     );
   });
 

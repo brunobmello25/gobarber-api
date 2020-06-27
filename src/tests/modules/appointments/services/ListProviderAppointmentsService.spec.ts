@@ -1,14 +1,19 @@
 import { ListProviderAppointmentsService } from '@modules/appointments/services';
 import { MockAppointmentsRepository } from '@tests/modules/appointments/mocks';
+import { MockCacheProvider } from '@shared/providers/CacheProvider/mocks';
 
 let mockAppointmentsRepository: MockAppointmentsRepository;
 let listProviderAppointments: ListProviderAppointmentsService;
+let mockCacheProvider: MockCacheProvider;
 
 describe('ListProviderAppointments', () => {
   beforeEach(() => {
     mockAppointmentsRepository = new MockAppointmentsRepository();
+    mockCacheProvider = new MockCacheProvider();
+
     listProviderAppointments = new ListProviderAppointmentsService(
       mockAppointmentsRepository,
+      mockCacheProvider,
     );
   });
 
