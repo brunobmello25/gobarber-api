@@ -7,11 +7,22 @@ import {
   usersController,
   userAvatarController,
 } from '@modules/users/infra/http/controllers';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 const router = Router();
 const upload = multer(uploadConfig);
 
-router.post('/', usersController.create);
+router.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  usersController.create,
+);
 
 router.patch(
   '/avatar',
