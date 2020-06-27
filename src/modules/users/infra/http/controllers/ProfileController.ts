@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import {
   UpdateProfileService,
@@ -14,9 +15,7 @@ class ProfileController {
       .resolve(ShowProfileService)
       .execute({ userId });
 
-    delete user.password;
-
-    response.status(200).json({ user });
+    response.status(200).json({ user: classToClass(user) });
   }
 
   async update(request: Request, response: Response) {
@@ -27,9 +26,7 @@ class ProfileController {
       .resolve(UpdateProfileService)
       .execute({ userId, name, email, oldPassword, password });
 
-    delete user.password;
-
-    return response.status(204).json({ user });
+    return response.status(204).json({ user: classToClass(user) });
   }
 }
 
