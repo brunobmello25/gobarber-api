@@ -42,8 +42,8 @@ class CreateAppointmentService {
         "Can't create an appointment before 8am or after 5pm",
       );
 
-    const hasAppointmentInSameDate = await this.appointmentsRepository.findByDate(
-      appointmentDate,
+    const hasAppointmentInSameDate = await this.appointmentsRepository.findByDateAndProvider(
+      { date: appointmentDate, providerId },
     );
 
     if (hasAppointmentInSameDate) {

@@ -3,6 +3,7 @@ import {
   ICreateAppointmentDTO,
   IFindAllInMonthFromProviderDTO,
   IFindAllInDayFromProviderDTO,
+  IFindByDateAndProviderDTO,
 } from '@modules/appointments/dtos';
 
 export default interface IAppointmentsRepository {
@@ -10,7 +11,10 @@ export default interface IAppointmentsRepository {
 
   create(data: ICreateAppointmentDTO): Promise<Appointment>;
 
-  findByDate(date: Date): Promise<Appointment | undefined>;
+  findByDateAndProvider({
+    date,
+    providerId,
+  }: IFindByDateAndProviderDTO): Promise<Appointment | undefined>;
 
   findAllInMonthFromProvider(
     data: IFindAllInMonthFromProviderDTO,
