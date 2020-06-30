@@ -45,7 +45,7 @@ class SendForgotPasswordEmailService {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `${process.env.WEBAPP_URL}/reset_password?token=${token}`,
+          link: `${process.env.WEBAPP_URL}/reset-password?token=${token}`,
         },
       },
     });
