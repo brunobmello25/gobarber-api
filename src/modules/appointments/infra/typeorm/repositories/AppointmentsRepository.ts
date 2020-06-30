@@ -56,6 +56,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
             `to_char(${dateFieldName}, 'MM-YYYY') = '${monthWithTwoDigits}-${year}'`,
         ),
       },
+      relations: ['user'],
     });
 
     return appointments;
@@ -78,6 +79,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
             `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${dayWithTwoDigits}-${monthWithTwoDigits}-${year}'`,
         ),
       },
+      relations: ['user'],
     });
 
     return appointments;
