@@ -30,7 +30,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     return appointment;
   }
 
-  public async findByDate({
+  public async findByDateAndProvider({
     date,
     providerId,
   }: IFindByDateAndProviderDTO): Promise<Appointment | undefined> {
