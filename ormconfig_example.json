@@ -14,5 +14,14 @@
     "cli": {
       "migrationsDir": "src/shared/infra/typeorm/migrations/*.ts"
     }
+  },
+  {
+    "name": "mongo",
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "development_gobarber",
+    "entities": ["src/modules/**/infra/typeorm/schemas/*.ts"],
+    "useUnifiedTopology": true
   }
 ]
