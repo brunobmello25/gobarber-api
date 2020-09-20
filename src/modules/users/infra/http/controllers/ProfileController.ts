@@ -26,7 +26,7 @@ class ProfileController {
       .resolve(UpdateProfileService)
       .execute({ userId, name, email, oldPassword, password });
 
-    return response.status(204).json({ user: classToClass(user) });
+    return response.status(200).json({ user: classToClass(user) });
   }
 }
 
